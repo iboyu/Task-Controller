@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+
+struct my_node {
+   int data;
+   struct my_node *next;
+};
+
+typedef struct my_node node ; 
+
+
+//display the list
+void printList( node *head) {
+    if(head == NULL){
+        printf("The list is null!\n");
+    }
+    node *ptr = head;
+   while(ptr != NULL) {
+      printf("(%d) ",ptr->data);
+      ptr = ptr->next;
+   }
+}
+
+//insert link at the first location
+ node *insertFirst(node *head, int data) {
+    node *current = ( node*) malloc(sizeof( node));
+    current->data = data;                                                
+    current->next = head;
+    head = current;
+ 
+   return current;
+}
+
+
+ node *insertTail( node *head, int data){
+     node *current = ( node*) malloc(sizeof( node));
+    current->data = data;
+    current->next = NULL;
+     node *temp = head;
+    if(head == NULL){
+        head = current;
+        current->next = NULL;
+        printf("line 45\n");
+    }else{
+        while(temp->next != NULL){
+            temp = temp->next;
+        }
+        temp->next = current;
+        printf("line 51\n");
+    }
+    return current;
+}
+
+void main() {
+     node *head = NULL;
+
+     node *myNode1 = insertTail(head, 1);
+     node *myNode2 =insertTail(head, 2);
+     node *myNode3 =insertTail(head, 3);
+
+
+   //printf("value is%d\n",head->next->data);
+
+    printList(head);
+
+  
+}
